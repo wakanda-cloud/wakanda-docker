@@ -1,2 +1,2 @@
-web: npm start
+web: npm start 4000
 web2: consul agent -join $CONSUL_HOST -data-dir /data/consul -config-dir /etc/consul.d
