@@ -14,9 +14,13 @@ Step 4: ```docker run --detach --name redis-statistic-receiver \--hostname redis
 
 Step 5: ```git clone https://github.com/wakanda-cloud/wakanda-statistic-receiver wakanda-statistic-receiver```
 
-Step 6: ```docker build -t wakanda-statistic-receiver wakanda-statistic-receiver```
+Step 6: ```cd wakanda-statistic-receiver```
 
-Step 7: ```docker run --detach --name wakanda-statistic-receiver \--hostname wakanda-statistic-receiver-1 \--env CONSUL_HOST=$CONSUL_IP wakanda-statistic-receiver``` 
+Step 7: ```docker build -t wakanda-statistic-receiver wakanda-statistic-receiver```
+
+Step 8: ```docker run --detach --name wakanda-statistic-receiver \--hostname wakanda-statistic-receiver-1 \--env CONSUL_HOST=$CONSUL_IP wakanda-statistic-receiver``` 
+
+Check with: curl $CONSUL_IP:8500/v1/catalog/nodes
 
 In developing...
 
