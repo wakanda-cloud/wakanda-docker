@@ -3,24 +3,14 @@ Docker configuration for all repositories
 
 #On wakanda-docker directory do:
 
+For now just wakanda-statistic-receiver can run with Docker.
 
-Step 1: ```docker run --detach --name consul --hostname consul-server-1 progrium/consul -server -bootstrap -ui-dir /ui```
+1- Create a folder
+2- Into created folder: clone wakanda-statistic-receiver
+3- Into created folder: clone wakanda-docker
+4- Copy docker-compose.yml to created folder
+5- Run docker-compose.yml
 
-Step 2: ```CONSUL_IP=$(docker inspect -f '{{ .NetworkSettings.IPAddress }}' consul)```
+Now you will can access consul agent using docker ip on port 8500, for now wakanda-statistic-receiver registering on consul itself and i dont know why.
 
-Step 3: ```docker build -t redis-statistic-receiver redis-statistic-receiver```
-
-Step 4: ```docker run --detach --name redis-statistic-receiver \--hostname redis-statistic-receiver-1 \--env CONSUL_HOST=$CONSUL_IP redis-statistic-receiver``` 
-
-Step 5: ```git clone https://github.com/wakanda-cloud/wakanda-statistic-receiver wakanda-statistic-receiver```
-
-Step 6: ```cd wakanda-statistic-receiver```
-
-Step 7: ```docker build -t wakanda-statistic-receiver wakanda-statistic-receiver```
-
-Step 8: ```docker run --detach --name wakanda-statistic-receiver \--hostname wakanda-statistic-receiver-1 \--env CONSUL_HOST=$CONSUL_IP wakanda-statistic-receiver``` 
-
-Check with: curl $CONSUL_IP:8500/v1/catalog/nodes
-
-In developing...
 
