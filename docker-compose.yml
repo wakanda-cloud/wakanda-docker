@@ -1,0 +1,24 @@
+version: '2'
+services:
+    consul:
+        hostname: consul-server-1
+        image: progrium/consul
+        command: -server -bootstrap -ui-dir /ui
+
+    statistic-receiver:
+        build: wakanda-statistic-receiver/
+        hostname: wakanda-statistic-receiver
+        depends_on:
+        - consul
+        - redis-statistic-receiver
+        environment:
+        - DECRYPT_KEY=d8afdey3
+        - REDIS_URL=redis://redis-statistic-receiver:6379
+        command: bash -c "consul agent -join consul -data-dir /data/consul -config-dir /etc/consul.d"
+        entrypoint: ["node", "/usr/src/app/server.js"]
+
+    redis-statistic-receiver:
+        image: smebberson/alpine-consul-redis
+        hostname: redis-statistic-receiver
+        depends_on:
+        - consul

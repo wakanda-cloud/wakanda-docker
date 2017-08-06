@@ -1,6 +1,0 @@
-{
-    "service": {
-        "name": "wakanda-statistic-receiver",
-         "port": 4000
-     }
-}
