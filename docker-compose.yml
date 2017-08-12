@@ -14,8 +14,7 @@ services:
         environment:
         - DECRYPT_KEY=d8afdey3
         - REDIS_URL=redis://redis-statistic-receiver:6379
-        command: bash -c "consul agent -join consul -data-dir /data/consul -config-dir /etc/consul.d"
-        entrypoint: ["node", "/usr/src/app/server.js"]
+        command: bash -c "consul agent -join consul -data-dir /data/consul -config-dir /etc/consul.d & node /usr/src/app/server.js"
 
     redis-statistic-receiver:
         image: smebberson/alpine-consul-redis
